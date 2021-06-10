@@ -1,5 +1,6 @@
 ﻿using Methods;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using Xunit;
@@ -45,6 +46,15 @@ namespace Methods.Tests
             yield return new object[] { 5, 5, "result: ", "resultt: 55" };
         }
 
+        // ClassData
+        [Theory]
+        [ClassData(typeof(TestParametersClass))]
+        public void AddsManyNumbers_InputClassData_ResultAsExpected(int expectedResult, params int[] numbers)
+        {
+                int actualResult = Methods.AddsManyNumbers(numbers);
+                Assert.Equal(expectedResult, actualResult);
+        }
+
         // Exception
         [Fact()]
         public void DivideNumbersTest_Input0_ThrowNullReferenceException()
@@ -63,5 +73,23 @@ namespace Methods.Tests
             Assert.Throws<DivideByZeroException>(() => Methods.DivideNumbers(number1, number2));
         }
 
+    }
+
+
+
+
+    public class TestParametersClass : IEnumerable<object[]>
+    {
+        public IEnumerator<object[]> GetEnumerator()
+        {
+            yield return new object[] { 3, new int[] { 1, 1, 1 }};
+            yield return new object[] { 5, new int[] { 2, 2, 1 }};
+            yield return new object[] { 7, new int[] { 2, 2, 2 }};
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
     }
 }

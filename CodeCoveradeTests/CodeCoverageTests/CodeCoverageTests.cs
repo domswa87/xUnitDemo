@@ -9,7 +9,7 @@ namespace CodeCoverageTests
         [Fact()]
         public void MultiplyBy1CoveredTest_Input10_Return10()
         {
-            var actualResult = Methods.MultiplyBy1Covered(10);
+            var actualResult = CodeCoverage.MultiplyBy1Covered(10);
             Assert.Equal(10, actualResult);
         }
 
@@ -27,7 +27,7 @@ namespace CodeCoverageTests
         [Fact()]
         public void MultiplyBy5HalfCoveredTest_HalfCovered()
         {
-            int actualResult = Methods.MultiplyBy5HalfCovered(10, false);
+            int actualResult = CodeCoverage.MultiplyBy5HalfCovered(10, false);
             Assert.Equal(50, actualResult);
         }
 

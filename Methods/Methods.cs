@@ -19,5 +19,15 @@ namespace Methods
         {
             return number1 / number2;
         }
+
+        public static int AddsManyNumbers(params int[] numbers)
+        {
+            int sum = 0;
+            foreach (var number in numbers)
+            {
+                sum = sum + number;
+            }
+            return sum;
+        }
     }
 }
